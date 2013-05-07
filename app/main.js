@@ -1,38 +1,37 @@
+(function () {
 
-var socket;
+	var socket;
 
-function init() {
-	socket = io.connect();
-	socket.on('connect', function () {
-		var sub = document.getElementById('sub');
-		sub.addEventListener('click', function () {
-			subscribe('test');
-		});
+	$(document).ready(function() {
+		socket = io.connect();
+		socket.on('connect', function () {
+			$('#sub').click(function () {
+				subscribe('test');
+			});
 
-		var pub = document.getElementById('pub');
-		pub.addEventListener('click', function () {
-			publish('test', 'foo')
-		});
+			$('#pub').click(function () {
+				publish('test', 'foo')
+			});
 
-		var res = $('#res');
-		receive(function (message) {
-			// console.log(message);
-			res.append('<li>' + message + '</li>');
+			receive(function (message) {
+				// console.log(message);
+				$('#res').append('<li>' + message + '</li>');
+			});
 		});
 	});
-};
 
-function subscribe(group) {
-	socket.emit('sub', group);
-};
+	function subscribe(group) {
+		socket.emit('sub', group);
+	};
 
-function publish(group, content) {
-	socket.emit('pub', {
-		group: group,
-		content: content
-	});
-};
+	function publish(group, content) {
+		socket.emit('pub', {
+			group: group,
+			content: content
+		});
+	};
 
-function receive(callback) {
-	socket.on('res', callback);
-};
+	function receive(callback) {
+		socket.on('res', callback);
+	};
+}());
