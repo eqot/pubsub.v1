@@ -1,3 +1,7 @@
+/*global $, io */
+
+'use strict';
+
 (function () {
 
 	var socket;
@@ -10,7 +14,7 @@
 			});
 
 			$('#pub').click(function () {
-				publish('test', 'foo')
+				publish('test', 'foo');
 			});
 
 			receive(function (message) {
@@ -22,16 +26,16 @@
 
 	function subscribe(group) {
 		socket.emit('sub', group);
-	};
+	}
 
 	function publish(group, content) {
 		socket.emit('pub', {
 			group: group,
 			content: content
 		});
-	};
+	}
 
 	function receive(callback) {
 		socket.on('res', callback);
-	};
+	}
 }());

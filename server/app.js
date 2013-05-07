@@ -6,11 +6,11 @@ var fs = require('fs');
 var clientHtml = {
 	content: fs.readFileSync('app/index.html'),
 	type: 'text/html'
-}
+};
 var clientJS = {
 	content: fs.readFileSync('app/main.js'),
 	type: 'application/javascript'
-}
+};
 
 var server = http.createServer(function (req, res) {
 	// console.log(req.url);
