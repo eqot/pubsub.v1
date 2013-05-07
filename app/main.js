@@ -14,8 +14,10 @@ function init() {
 			publish('test', 'foo')
 		});
 
+		var res = $('#res');
 		receive(function (message) {
-			console.log(message);
+			// console.log(message);
+			res.append('<li>' + message + '</li>');
 		});
 	});
 };
